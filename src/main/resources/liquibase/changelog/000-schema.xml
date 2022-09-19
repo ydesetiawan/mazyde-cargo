@@ -1,0 +1,86 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-user" author="edysetiawan">
+        <createTable tableName="user">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="datetime(6)"/>
+        </createTable>
+        <createIndex tableName="user"
+                     indexName="IDX_User_1">
+            <column name="username"/>
+            <column name="name"/>
+            <column name="email"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-table-transaction" author="edys">
+        <createTable tableName="transaction">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="receipt_number" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="sender" type="VARCHAR(100)"/>
+            <column name="sender_phone" type="VARCHAR(20)"/>
+            <column name="receiver" type="VARCHAR(100)"/>
+            <column name="receiver_phone" type="VARCHAR(20)"/>
+            <column name="image_link" type="VARCHAR(255)"/>
+            <column name="shipping_cost" type="decimal(19, 2)"
+                    defaultValueNumeric="0"/>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="datetime(6)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="transaction" constraintName="FK_USER_AND_TRANSACTION"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+                                 onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+
+        <createIndex tableName="transaction"
+                     indexName="IDX_Transaction_1">
+            <column name="receipt_number"/>
+            <column name="sender"/>
+            <column name="receiver"/>
+        </createIndex>
+    </changeSet>
+
+
+</databaseChangeLog>
