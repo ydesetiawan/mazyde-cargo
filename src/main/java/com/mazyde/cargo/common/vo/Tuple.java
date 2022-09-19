@@ -1,8 +1,6 @@
 package com.mazyde.cargo.common.vo;
 
-/**
- * Created by jurnal on 9/20/16.
- */
+
 public class Tuple<T, U> {
 
     private final T t;
