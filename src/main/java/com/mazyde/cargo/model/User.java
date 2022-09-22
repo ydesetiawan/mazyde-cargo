@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "user", indexes = {@Index(name = "IDX_User_1", columnList = "username,email,name")})
 @EqualsAndHashCode(of = "id", callSuper = false)
-public class User extends AuditingEntity {
+public class User extends AuditingEntity implements BaseUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class User extends AuditingEntity {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "is_deleted")
     private boolean deleted;
 
 }

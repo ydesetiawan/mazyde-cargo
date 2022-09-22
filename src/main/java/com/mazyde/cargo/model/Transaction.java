@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user", indexes = {@Index(name = "IDX_Transaction_1", columnList = "receiptNumber,sender,receiver")})
+@Table(name = "transaction", indexes = {@Index(name = "IDX_Transaction_1", columnList = "receiptNumber,sender,receiver")})
 @EqualsAndHashCode(of = "id", callSuper = false)
 public class Transaction extends AuditingEntity {
 

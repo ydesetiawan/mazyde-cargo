@@ -18,7 +18,7 @@ import java.util.Optional;
     entityManagerFactoryRef = "entityManagerFactory",
     value = "com.mazyde", includeFilters = @ComponentScan.Filter(pattern = "..*JpaRepository", type = FilterType.REGEX)
 )
-@EntityScan("com.journal")
+@EntityScan("com.mazyde")
 @Configuration
 public class PersistenceContext {
 
