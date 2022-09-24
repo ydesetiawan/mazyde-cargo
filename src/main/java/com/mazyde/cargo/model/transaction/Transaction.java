@@ -1,17 +1,16 @@
 package com.mazyde.cargo.model.transaction;
 
+import com.mazyde.cargo.dto.request.SaveTransactionCmd;
 import com.mazyde.cargo.model.user.User;
 import com.mazyde.cargo.persistence.AuditingEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "transaction", indexes = {@Index(name = "IDX_Transaction_1", columnList = "receiptNumber,sender,receiver")})
@@ -47,6 +46,21 @@ public class Transaction extends AuditingEntity {
     @Enumerated
     @Column(columnDefinition = "tinyint")
     private TransactionStatus status;
+
+    public static Transaction valueOf(SaveTransactionCmd cmd, User user) {
+        return Transaction.builder()
+            .user(user)
+            .receiptNumber(cmd.getReceiptNumber())
+            .description(cmd.getDescription())
+            .sender(cmd.getSender())
+            .senderPhone(cmd.getSenderPhone())
+            .receiver(cmd.getReceiver())
+            .receiverPhone(cmd.getReceiverPhone())
+            .receiverAddress(cmd.getReceiverAddress())
+            .shippingCost(cmd.getShippingCost())
+            .status(cmd.getStatus())
+            .build();
+    }
 
 
 }

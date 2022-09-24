@@ -50,8 +50,73 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Tambah Data Transaksi</h1>
+                <br/>
+                <div id="content">
+                    <form id="form" action="#"
+                          th:action="@{/transactions/add}" method="POST" class="row g-3 needs-validation">
+                        <section>
+                            <div th:if="${fields!=null}"
+                                 class="alert alert-warning fade in">
+                                <h5>
+                                     Error
+                                    Message :
+                                </h5>
 
+                            </div>
+                            <div class="mb-3">
+                                <label for="receiptNumberId" class="form-label">No Resi</label>
+                                <input type="receiptNumber" class="form-control" id="receiptNumberId">
 
+                            </div>
+                            <div class="mb-3">
+                                <label for="descriptionId" class="form-label">Deskripsi</label>
+                                <textarea name="description" class="form-control" id="descriptionId"
+                                          rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senderId" class="form-label">Nama Pengirim</label>
+                                <input type="sender" class="form-control" id="senderId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="senderPhoneId" class="form-label">Telp Pengirim</label>
+                                <input type="senderPhone" class="form-control" id="senderPhoneId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="receiverId" class="form-label">Nama Penerima</label>
+                                <input type="receiver" class="form-control" id="receiverId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="receiverPhoneId" class="form-label">Telp Penerima</label>
+                                <input type="receiverPhone" class="form-control" id="receiverPhoneId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="receiverAddressId" class="form-label">Alamat Penerima</label>
+                                <textarea name="receiverAddress" class="form-control" id="receiverAddressId" rows="3">
+                                </textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="shippingCostId" class="form-label">Ongkir</label>
+                                <input type="shippingCost" class="form-control" id="shippingCostId">
+                            </div>
+                            <div class="form-check">
+                                <input name="status" class="form-check-input" type="radio" value="" id="flexCheckDefault" checked>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    In Progress
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input name="status" class="form-check-input" type="radio" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Delivered
+                                </label>
+                            </div>
+                            <br/>
+                            <div class="mb-3">
+                                <button class="btn btn-primary" type="submit">Submit form</button>
+                            </div>
+
+                        </section>
+                    </form>
                 </div>
             </div>
         </main>
