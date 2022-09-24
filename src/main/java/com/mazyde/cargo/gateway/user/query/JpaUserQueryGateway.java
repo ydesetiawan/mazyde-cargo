@@ -1,6 +1,6 @@
-package com.mazyde.cargo.gateway.query;
+package com.mazyde.cargo.gateway.user.query;
 
-import com.mazyde.cargo.model.User;
+import com.mazyde.cargo.model.user.User;
 import com.mazyde.cargo.repository.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

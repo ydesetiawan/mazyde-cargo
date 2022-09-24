@@ -1,9 +1,9 @@
-package com.mazyde.cargo.config;
+package com.mazyde.cargo.usecase.user;
 
-import com.mazyde.cargo.gateway.query.UserQueryGateway;
-import com.mazyde.cargo.model.User;
-import com.mazyde.cargo.model.UserDetails;
-import com.mazyde.cargo.model.UserInfo;
+import com.mazyde.cargo.gateway.user.query.UserQueryGateway;
+import com.mazyde.cargo.model.user.User;
+import com.mazyde.cargo.model.user.UserDetails;
+import com.mazyde.cargo.model.user.UserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,17 +14,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
-public class MainAuthenticationProvider implements AuthenticationProvider {
+public class AuthenticationUserUseCase implements AuthenticationProvider {
 
     private final UserQueryGateway userQueryGateway;
 
     @Override
+    @Transactional(readOnly = true)
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();

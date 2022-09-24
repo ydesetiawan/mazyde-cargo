@@ -1,4 +1,4 @@
-package com.mazyde.cargo.model;
+package com.mazyde.cargo.model.user;
 
 public interface BaseUser {
 

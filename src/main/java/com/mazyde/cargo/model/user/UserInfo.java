@@ -1,4 +1,4 @@
-package com.mazyde.cargo.model;
+package com.mazyde.cargo.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

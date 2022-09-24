@@ -1,4 +1,4 @@
-package com.mazyde.cargo.model;
+package com.mazyde.cargo.model.user;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;

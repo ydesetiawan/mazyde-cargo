@@ -1,5 +1,6 @@
-package com.mazyde.cargo.model;
+package com.mazyde.cargo.model.transaction;
 
+import com.mazyde.cargo.model.user.User;
 import com.mazyde.cargo.persistence.AuditingEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;

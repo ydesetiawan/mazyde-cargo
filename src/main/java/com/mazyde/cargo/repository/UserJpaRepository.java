@@ -1,6 +1,6 @@
 package com.mazyde.cargo.repository;
 
-import com.mazyde.cargo.model.User;
+import com.mazyde.cargo.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
