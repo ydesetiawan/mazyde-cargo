@@ -1,17 +1,13 @@
 package com.mazyde.cargo.dto.request;
 
 import com.mazyde.cargo.model.transaction.TransactionStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Value
-@Getter
-@NoArgsConstructor(force = true)
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class SaveTransactionCmd {
 

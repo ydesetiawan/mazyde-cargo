@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -42,9 +42,10 @@ public class TransactionController {
     }
 
     @PostMapping("/transactions/add")
-    public String saveTransaction(@Valid SaveTransactionCmd cmd, BindingResult result, Model model) {
+    public String saveTransaction(@Valid @ModelAttribute SaveTransactionCmd cmd, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("result", result);
+            model.addAttribute("cmd", cmd);
             return "add_transaction";
         }
 
