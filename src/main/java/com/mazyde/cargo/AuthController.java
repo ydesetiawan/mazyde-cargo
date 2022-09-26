@@ -26,4 +26,12 @@ public class AuthController {
 
         return "redirect:/transactions";
     }
+
+    @GetMapping("/error")
+    public String getError(
+        Model model
+    ) {
+
+        return "error";
+    }
 }

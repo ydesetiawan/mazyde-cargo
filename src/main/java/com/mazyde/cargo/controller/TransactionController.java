@@ -42,9 +42,9 @@ public class TransactionController {
     }
 
     @PostMapping("/transactions/add")
-    public String saveTransaction(@Valid SaveTransactionCmd cmd, Model model, BindingResult result) {
-        if (null != result && result.hasErrors()) {
-            model.addAttribute("fields", result);
+    public String saveTransaction(@Valid SaveTransactionCmd cmd, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("result", result);
             return "add_transaction";
         }
 
