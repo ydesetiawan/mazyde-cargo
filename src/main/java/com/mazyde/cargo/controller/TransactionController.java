@@ -7,7 +7,9 @@ import com.mazyde.cargo.usecase.transaction.GetTransactionIdUseCase;
 import com.mazyde.cargo.usecase.transaction.GetTransactionsUseCase;
 import com.mazyde.cargo.usecase.transaction.SaveTransactionUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,7 +40,17 @@ public class TransactionController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(100);
 
-        model.addAttribute("transactionPage", getTransactionsUseCase.getTransactions(query, PageRequest.of(currentPage - 1, pageSize)));
+        Page<Transaction> transactions = getTransactionsUseCase
+            .getTransactions(
+                query,
+                PageRequest.of(
+                    currentPage - 1,
+                    pageSize,
+                    Sort.by(Sort.Direction.DESC, "createdDate")
+                )
+            );
+
+        model.addAttribute("transactionPage", transactions);
 
         return "transaction";
     }

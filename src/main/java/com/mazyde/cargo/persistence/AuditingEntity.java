@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Audited
 @MappedSuperclass
@@ -49,6 +50,11 @@ public class AuditingEntity extends AbstractEntity {
 
     public ZonedDateTime getCreatedDate() {
         return createdDate;
+    }
+
+    public String getCreatedDateFormatted() {
+        return getCreatedDate().format(DateTimeFormatter
+            .ofPattern("dd/MM/yyyy HH:mm:ss 'WIB'"));
     }
 
     public void setCreatedDate(ZonedDateTime createdDate) {

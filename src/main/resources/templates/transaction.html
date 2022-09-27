@@ -73,6 +73,7 @@
                             <thead>
                             <tr>
                                 <th>No. Resi</th>
+                                <th>Tanggal</th>
                                 <th>Keterangan</th>
                                 <th>Pengirim</th>
                                 <th>Penerima</th>
@@ -86,6 +87,7 @@
                                 th:style="${iStat.odd}? 'font-weight: bold;'"
                                 th:alt-title="${iStat.even}? 'even' : 'odd'">
                                 <td th:text="${transaction.receiptNumber}"/>
+                                <td th:text="${transaction.createdDateFormatted}"/>
                                 <td th:text="${transaction.description}"/>
                                 <td th:text="${transaction.sender}"/>
                                 <td th:text="${transaction.receiver}"/>
