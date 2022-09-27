@@ -22,6 +22,7 @@
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                             <div class="card-body">
                                 <form th:action="@{/login}" method="post">
+                                    <div th:if="${error!=null}" class="form-floating mb-3 text-danger">Username atau password anda salah!</div>
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputEmail" name="username"
                                                placeholder="name@example.com"/>
@@ -38,6 +39,7 @@
                                         <input name="submit"
                                                type="submit" value="Login"
                                                class="btn btn-primary"/>
+                                        <a sec:authorize="isAnonymous()" th:href="@{'/'}" class="btn btn-success">Go To Dashboard</a>
                                     </div>
                                 </form>
                             </div>

@@ -16,6 +16,8 @@ public class AuthController {
         Authentication authentication
     ) {
 
+        model.addAttribute("error", error);
+
         return "login";
     }
 

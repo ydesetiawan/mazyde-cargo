@@ -3,6 +3,7 @@ package com.mazyde.cargo.gateway.user.query;
 import com.mazyde.cargo.model.user.User;
 import com.mazyde.cargo.repository.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +15,7 @@ public class JpaUserQueryGateway implements UserQueryGateway {
     @Override
     public User findByUsername(String username) {
         return userJpaRepository.findByUsername(username)
-            .orElseThrow(() -> new IllegalArgumentException("Username is not found"));
+            .orElseThrow(() -> new BadCredentialsException("Username is not found"));
     }
 
     @Override
