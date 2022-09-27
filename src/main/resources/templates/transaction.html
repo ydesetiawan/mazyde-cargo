@@ -90,8 +90,9 @@
                                 <td th:text="${transaction.sender}"/>
                                 <td th:text="${transaction.receiver}"/>
                                 <td th:text="${transaction.receiverAddress}"/>
-                                <td th:text="${transaction.status}"/>
-                                <td></td>
+                                <td th:text="${transaction.status.name == 'IN_PROGRESS'} ? 'Sedang Diproses' : 'Terkirim' "/>
+                                <td><a th:href="@{'/transactions/add/' + ${transaction.id}}" class="btn btn-primary">Edit</a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

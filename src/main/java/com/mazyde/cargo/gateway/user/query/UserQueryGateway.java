@@ -6,4 +6,6 @@ public interface UserQueryGateway {
 
     User findByUsername(String username);
 
+    User findById(Long id);
+
 }

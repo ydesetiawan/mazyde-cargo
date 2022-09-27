@@ -1,35 +1,45 @@
 package com.mazyde.cargo.dto.request;
 
+import com.mazyde.cargo.controller.ActionType;
+import com.mazyde.cargo.model.transaction.Transaction;
 import com.mazyde.cargo.model.transaction.TransactionStatus;
 import lombok.*;
 
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SaveTransactionCmd {
 
-    @NotNull(message = "No Resi tidak boleh kosong")
+    @With
+    private ActionType actionType;
+
+    private Long id;
+
+    @NotEmpty(message = "No Resi tidak boleh kosong")
     private String receiptNumber;
 
 
     private String description;
 
-    @NotNull(message = "Pengirim tidak boleh kosong")
+    @NotEmpty(message = "Pengirim tidak boleh kosong")
     private String sender;
 
-    @NotNull(message = "Telp Pengirim tidak boleh kosong")
+    @NotEmpty(message = "Telp Pengirim tidak boleh kosong")
     private String senderPhone;
 
-    @NotNull(message = "Penerima tidak boleh kosong")
+    @NotEmpty(message = "Penerima tidak boleh kosong")
     private String receiver;
 
-    @NotNull(message = "Telpn Penerima tidak boleh kosong")
+    @NotEmpty(message = "Telpn Penerima tidak boleh kosong")
     private String receiverPhone;
 
-    @NotNull(message = "Alamat tidak boleh kosong")
+    @NotEmpty(message = "Alamat tidak boleh kosong")
     private String receiverAddress;
 
     private String imageLink;
@@ -37,7 +47,31 @@ public class SaveTransactionCmd {
     @NotNull(message = "Ongkir tidak boleh kosong")
     private BigDecimal shippingCost;
 
-    @NotNull(message = "Status tidak boleh kosong")
     private TransactionStatus status;
+
+    @AssertTrue(message = "Id tidak tersedia dan tidak dapat edit data")
+    public boolean isIdNullWhenEdit() {
+        if (ActionType.EDIT.equals(getActionType())) {
+            return !(null == id);
+        }
+
+        return true;
+    }
+
+    public static SaveTransactionCmd valueOf(Transaction transaction) {
+        return SaveTransactionCmd.builder()
+            .actionType(ActionType.EDIT)
+            .id(transaction.getId())
+            .receiptNumber(transaction.getReceiptNumber())
+            .description(transaction.getDescription())
+            .sender(transaction.getSender())
+            .senderPhone(transaction.getSenderPhone())
+            .receiver(transaction.getReceiver())
+            .receiverPhone(transaction.getReceiverPhone())
+            .receiverAddress(transaction.getReceiverAddress())
+            .shippingCost(transaction.getShippingCost())
+            .status(transaction.getStatus())
+            .build();
+    }
 
 }

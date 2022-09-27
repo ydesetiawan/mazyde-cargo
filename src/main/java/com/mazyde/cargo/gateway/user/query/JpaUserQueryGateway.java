@@ -16,4 +16,10 @@ public class JpaUserQueryGateway implements UserQueryGateway {
         return userJpaRepository.findByUsername(username)
             .orElseThrow(() -> new IllegalArgumentException("Username is not found"));
     }
+
+    @Override
+    public User findById(Long id) {
+        return userJpaRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("User Id is not found"));
+    }
 }

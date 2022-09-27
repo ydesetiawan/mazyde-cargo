@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 
 public interface TransactionQueryGateway {
 
+    Transaction findById(Long id);
+
     Page<Transaction> findAll(Pageable pageable);
 
     Page<Transaction> findAllByReceiptNumber(String receiptNumber, Pageable pageable);

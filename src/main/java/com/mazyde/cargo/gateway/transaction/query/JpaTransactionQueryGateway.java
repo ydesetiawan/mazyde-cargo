@@ -14,6 +14,12 @@ public class JpaTransactionQueryGateway implements TransactionQueryGateway {
     private final TransactionJpaRepository transactionJpaRepository;
 
     @Override
+    public Transaction findById(Long id) {
+        return transactionJpaRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("TransactionId is not found"));
+    }
+
+    @Override
     public Page<Transaction> findAll(Pageable pageable) {
         return transactionJpaRepository.findAll(pageable);
     }

@@ -15,7 +15,7 @@ public class GetTransactionsUseCase {
 
     private final TransactionQueryGateway transactionQueryGateway;
 
-    public Page<Transaction> getTransaction(Optional<String> receiptNumber, Pageable pageable) {
+    public Page<Transaction> getTransactions(Optional<String> receiptNumber, Pageable pageable) {
         if (receiptNumber.isPresent()) {
             return transactionQueryGateway.findAllByReceiptNumber(receiptNumber.get(), pageable);
         }

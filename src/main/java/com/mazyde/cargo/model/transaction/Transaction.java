@@ -62,5 +62,20 @@ public class Transaction extends AuditingEntity {
             .build();
     }
 
+    public Transaction editOf(SaveTransactionCmd cmd, User user) {
+
+        this.receiptNumber = cmd.getReceiptNumber();
+        this.user = user;
+        this.description = cmd.getDescription();
+        this.sender = cmd.getSender();
+        this.senderPhone = cmd.getSenderPhone();
+        this.receiver = cmd.getReceiver();
+        this.receiverPhone = cmd.getReceiverPhone();
+        this.receiverAddress = cmd.getReceiverAddress();
+        this.shippingCost = cmd.getShippingCost();
+        this.status = cmd.getStatus();
+        return this;
+    }
+
 
 }
