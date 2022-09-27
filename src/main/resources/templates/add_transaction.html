@@ -137,7 +137,7 @@
                                     th:text="${err.defaultMessage}" class="error text-danger"/>
                             </ul>
                         </div>
-                        <div class="form-check">
+                        <div class="mb-3">
                             <input th:name="status" value="IN_PROGRESS" class="form-check-input" type="radio"
                                    id="flexCheckDefault"
                                    checked>
@@ -145,7 +145,7 @@
                                 In Progress
                             </label>
                         </div>
-                        <div class="form-check">
+                        <div class="mb-3">
                             <input th:name="status" value="DONE" class="form-check-input" type="radio"
                                    id="flexCheckChecked">
                             <label class="form-check-label" for="flexCheckChecked">
@@ -156,8 +156,9 @@
                                     class="error text-danger"/>
                             </ul>
                         </div>
-                        <div>
-                            <input type="file" th:name="photo" accept="image/png, image/jpeg" />
+                        <div class="mb-3">
+                            <label class="form-label">Maksimal file 128KB</label>
+                            <input class="form-control" type="file" th:name="photo" accept="image/png, image/jpeg" />
                         </div>
                         <br/>
                         <div class="mb-3">
