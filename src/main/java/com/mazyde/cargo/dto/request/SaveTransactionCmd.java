@@ -1,9 +1,11 @@
 package com.mazyde.cargo.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mazyde.cargo.controller.ActionType;
 import com.mazyde.cargo.model.transaction.Transaction;
 import com.mazyde.cargo.model.transaction.TransactionStatus;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
@@ -48,6 +50,14 @@ public class SaveTransactionCmd {
     private BigDecimal shippingCost;
 
     private TransactionStatus status;
+
+    @With
+    @JsonIgnore
+    private Long userId;
+
+    @With
+    @JsonIgnore
+    private MultipartFile multipartFile;
 
     @AssertTrue(message = "Id tidak tersedia dan tidak dapat edit data")
     public boolean isIdNullWhenEdit() {

@@ -60,6 +60,7 @@
                 <div id="content">
                     <form id="form" action="#"
                           th:action="@{/transactions/add}" th:object="${cmd}" method="POST"
+                          enctype="multipart/form-data"
                           class="row g-3 needs-validation">
 
                         <input type="hidden" th:name="id" th:field="*{id}"/>
@@ -155,7 +156,9 @@
                                     class="error text-danger"/>
                             </ul>
                         </div>
-
+                        <div>
+                            <input type="file" th:name="photo" accept="image/png, image/jpeg" />
+                        </div>
                         <br/>
                         <div class="mb-3">
                             <button class="btn btn-primary" type="submit">Submit form</button>

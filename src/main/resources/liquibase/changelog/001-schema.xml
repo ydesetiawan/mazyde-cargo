@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-table-transaction-photo" author="edysetiawan">
+        <createTable tableName="transaction_photo">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="transaction_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo" type="LONGBLOB"/>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="datetime(6)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="transaction_id"
+                                 baseTableName="transaction_photo" constraintName="FK_TRANSACTION_AND_TRANSACTION_PHOTO"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+                                 onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="transaction"/>
+    </changeSet>
+
+
+</databaseChangeLog>

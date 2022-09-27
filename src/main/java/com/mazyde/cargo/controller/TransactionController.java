@@ -1,9 +1,11 @@
 package com.mazyde.cargo.controller;
 
 import com.mazyde.cargo.dto.request.SaveTransactionCmd;
+import com.mazyde.cargo.dto.response.TransactionDto;
 import com.mazyde.cargo.model.transaction.Transaction;
 import com.mazyde.cargo.model.user.UserInfoUtil;
 import com.mazyde.cargo.usecase.transaction.GetTransactionIdUseCase;
+import com.mazyde.cargo.usecase.transaction.GetTransactionPhotoUseCase;
 import com.mazyde.cargo.usecase.transaction.GetTransactionsUseCase;
 import com.mazyde.cargo.usecase.transaction.SaveTransactionUseCase;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -28,6 +31,8 @@ public class TransactionController {
     private final GetTransactionsUseCase getTransactionsUseCase;
 
     private final GetTransactionIdUseCase getTransactionIdUseCase;
+
+    private final GetTransactionPhotoUseCase getTransactionPhotoUseCase;
 
     private final SaveTransactionUseCase saveTransactionUseCase;
 
@@ -72,14 +77,31 @@ public class TransactionController {
         return "add_transaction";
     }
 
+    @GetMapping("/transactions/view/{transactionId}")
+    public String getTransactionDetail(Model model, @PathVariable Long transactionId) {
+
+        TransactionDto dto = getTransactionPhotoUseCase.getTransactionDetail(transactionId);
+        model.addAttribute("dto", dto);
+
+        return "transaction_detail.html";
+    }
+
     @PostMapping("/transactions/add")
-    public String saveTransaction(@Valid SaveTransactionCmd cmd, BindingResult result, Model model) {
+    public String saveTransaction(
+        @Valid SaveTransactionCmd cmd,
+        @RequestParam("photo") MultipartFile multipartFile,
+        BindingResult result,
+        Model model) {
         if (result.hasErrors()) {
             model.addAttribute("result", result);
             model.addAttribute("cmd", cmd);
             return "add_transaction";
         }
-        saveTransactionUseCase.saveTransaction(UserInfoUtil.getUserId(), cmd);
+        saveTransactionUseCase.saveTransaction(
+            cmd
+                .withUserId(UserInfoUtil.getUserId())
+                .withMultipartFile(multipartFile)
+        );
         return "redirect:/transactions";
     }
 
