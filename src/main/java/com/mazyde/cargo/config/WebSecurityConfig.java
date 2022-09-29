@@ -21,11 +21,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-    private final AuthenticationUserUseCase mainAuthenticationProvider;
+    private final AuthenticationUserUseCase authenticationUserUseCase;
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(mainAuthenticationProvider);
+        auth.authenticationProvider(authenticationUserUseCase);
     }
 
     @Bean
@@ -35,10 +35,8 @@ public class WebSecurityConfig {
             .authorizeHttpRequests((requests) -> {
                     try {
                         requests
-                            .antMatchers("/assets/**","**/lib/**","**/css/**","**/js/**").permitAll()
-                            .and()
-                            .authorizeHttpRequests((req) -> req
-                                .antMatchers("/main", "/main/**").hasRole("ADMIN"));
+                            .antMatchers("/", "/assets/**", "**/lib/**", "**/css/**", "**/js/**").permitAll()
+                            .anyRequest().hasRole("ADMIN");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

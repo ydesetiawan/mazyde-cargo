@@ -43,7 +43,7 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a th:href="@{/}" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1><img th:src="@{'/assets/img/kpm_cargo.png'}" class="img-fluid" alt=""> KPMCargo</h1>
@@ -57,7 +57,12 @@
                 <li><a href="#footer">About</a></li>
                 <li><a href="#service">Services</a></li>
                 <li><a href="#footer">Contact</a></li>
-                <li><a class="get-a-quote" th:href="@{/login}">Login</a></li>
+                <li><a sec:authorize="isAuthenticated()" class="get-a-quote" th:href="@{/logout}">Logout</a></li>
+                <li><a sec:authorize="isAnonymous" class="get-a-quote" th:href="@{/login}">Login</a></li>
+                <li>
+                    <a sec:authorize="isAuthenticated()" th:href="@{'/transactions'}" class="get-a-quote">Go To Admin
+                        Page</a>
+                </li>
             </ul>
         </nav><!-- .navbar -->
 
@@ -83,7 +88,7 @@
 
                 <div th:if="${dto!=null}" class="row gy-4" data-aos="fade-up" data-aos-delay="400">
 
-                    <table class="text-white table  table-responsive mb-3">
+                    <table class="text-white table table-responsive mb-3">
                         <thead>
                         <tr>
                             <th>No. Resi</th>
@@ -280,7 +285,8 @@
 
             </div>
 
-        </div></div>
+        </div>
+    </div>
     </div>
 
     <div class="container mt-4">

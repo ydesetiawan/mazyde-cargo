@@ -37,7 +37,7 @@ public class AuthenticationUserUseCase implements AuthenticationProvider {
         }
 
         Set<GrantedAuthority> authorities = buildUserAuthority();
-        return new UsernamePasswordAuthenticationToken(buildUserForAuthentication(user, authorities), authorities);
+        return new UsernamePasswordAuthenticationToken(buildUserForAuthentication(user, authorities), password, authorities);
     }
 
     @Override

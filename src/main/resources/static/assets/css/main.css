@@ -21,6 +21,7 @@
   --color-default: #0a0d13;
   --color-primary: #0d42ff;
   --color-secondary: #0e1d34;
+  --color-custom: #0e1d34;
 }
 
 /* Smooth scroll behavior */
@@ -1752,7 +1753,8 @@ section {
 .hero {
   width: 100%;
   min-height: 50vh;
-  background-color: var(--color-secondary);
+  /*background-color: var(--color-secondary);*/
+  background-color: var(--color-custom);
   background-image: url("../img/hero-bg.png");
   background-size: cover;
   background-position: center;
