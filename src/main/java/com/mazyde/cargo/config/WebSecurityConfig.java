@@ -35,7 +35,7 @@ public class WebSecurityConfig {
             .authorizeHttpRequests((requests) -> {
                     try {
                         requests
-                            .antMatchers("/assets/**").permitAll()
+                            .antMatchers("/assets/**","**/lib/**","**/css/**","**/js/**").permitAll()
                             .and()
                             .authorizeHttpRequests((req) -> req
                                 .antMatchers("/main", "/main/**").hasRole("ADMIN"));

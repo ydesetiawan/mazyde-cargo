@@ -12,4 +12,6 @@ public interface TransactionQueryGateway {
 
     Page<Transaction> findAllByReceiptNumber(String receiptNumber, Pageable pageable);
 
+    Transaction findByReceiptNumber(String receiptNumber);
+
 }

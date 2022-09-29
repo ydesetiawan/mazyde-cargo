@@ -28,4 +28,10 @@ public class JpaTransactionQueryGateway implements TransactionQueryGateway {
     public Page<Transaction> findAllByReceiptNumber(String receiptNumber, Pageable pageable) {
         return transactionJpaRepository.findAllByReceiptNumber(receiptNumber, pageable);
     }
+
+    @Override
+    public Transaction findByReceiptNumber(String receiptNumber) {
+        return transactionJpaRepository.findFirstByReceiptNumberOrderByCreatedDateDesc(receiptNumber)
+            .orElse(null);
+    }
 }
