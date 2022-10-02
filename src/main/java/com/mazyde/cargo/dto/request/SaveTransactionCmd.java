@@ -55,10 +55,6 @@ public class SaveTransactionCmd {
     @JsonIgnore
     private Long userId;
 
-    @With
-    @JsonIgnore
-    private MultipartFile multipartFile;
-
     @AssertTrue(message = "Id tidak tersedia dan tidak dapat edit data")
     public boolean isIdNullWhenEdit() {
         if (ActionType.EDIT.equals(getActionType())) {

@@ -54,12 +54,13 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Daftar Data Transaksi</h1>
+                <div class="d-flex flex-row-reverse"><a th:href="@{/transactions/add}" class="btn btn-success"> Tambah Data</a></div>
+                <br/>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
                         Daftar Data
                     </div>
-
                     <div class="card-body">
                         <div class="dataTable-top">
                             <div class="dataTable-search">
@@ -68,7 +69,6 @@
                                         <input class="form-control" type="text" name="query" placeholder="No Resi...">
                                         <button type="submit" class="btn btn-primary">Search</button>
                                         <a type="reset" class="btn btn-secondary" th:href="@{/transactions}">Reset</a>
-                                        <a th:href="@{/transactions/add}" class="btn btn-success"> Tambah Data</a>
                                     </div>
                                 </form>
                             </div>

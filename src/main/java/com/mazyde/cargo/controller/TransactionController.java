@@ -12,14 +12,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
@@ -89,8 +85,8 @@ public class TransactionController {
 
     @PostMapping("/transactions/add")
     public String saveTransaction(
-        @Valid SaveTransactionCmd cmd,
         @RequestParam("photo") MultipartFile multipartFile,
+        @ModelAttribute @Valid SaveTransactionCmd cmd,
         BindingResult result,
         Model model) {
         if (result.hasErrors()) {
@@ -100,8 +96,7 @@ public class TransactionController {
         }
         saveTransactionUseCase.saveTransaction(
             cmd
-                .withUserId(UserInfoUtil.getUserId())
-                .withMultipartFile(multipartFile)
+                .withUserId(UserInfoUtil.getUserId()), multipartFile
         );
         return "redirect:/transactions";
     }
