@@ -54,7 +54,8 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Daftar Data Transaksi</h1>
-                <div class="d-flex flex-row-reverse"><a th:href="@{/transactions/add}" class="btn btn-success"> Tambah Data</a></div>
+                <div class="d-flex flex-row-reverse"><a th:href="@{/transactions/add}" class="btn btn-success"><i class="fas fa-add me-1"></i> Tambah
+                    Data</a></div>
                 <br/>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -67,54 +68,59 @@
                                 <form th:action="@{/transactions}" method="get">
                                     <div class="input-group">
                                         <input class="form-control" type="text" name="query" placeholder="No Resi...">
-                                        <button type="submit" class="btn btn-primary">Search</button>
-                                        <a type="reset" class="btn btn-secondary" th:href="@{/transactions}">Reset</a>
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search me-1"></i></button>
+                                        <a type="reset" class="btn btn-secondary" th:href="@{/transactions}"><i class="fas fa-refresh me-1"></i></a>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <table class="table table-bordered table-responsive">
-                            <thead>
-                            <tr>
-                                <th>No. Resi</th>
-                                <th>Tanggal</th>
-                                <th>Detail</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="transaction, iStat : ${transactionPage.content}"
-                                th:style="${iStat.odd}? 'font-weight: bold;'"
-                                th:alt-title="${iStat.even}? 'even' : 'odd'">
-                                <td th:text="${transaction.receiptNumber}"/>
-                                <td th:text="${transaction.createdDateFormatted}"/>
-                                <td>
-                                    <div>
-                                        <label class="text-info">Keterangan: </label>
-                                        <span th:text="${transaction.description}"/>
-                                    </div>
-                                    <div>
-                                        <label class="text-info">Pengirim: </label>
-                                        <span th:text="${transaction.sender}"/>
-                                    </div>
-                                    <div>
-                                        <label class="text-info">Penerima: </label>
-                                        <span th:text="${transaction.receiver}"/>
-                                    </div>
-                                    <div>
-                                        <label class="text-info">Alamat Penerima: </label>
-                                        <span th:text="${transaction.receiverAddress}"/>
-                                    </div>
-                                </td>
-                                <td th:text="${transaction.status.name == 'IN_PROGRESS'} ? 'Sedang Diproses' : 'Terkirim' "/>
-                                <td>
-                                    <a th:href="@{'/transactions/view/' + ${transaction.id}}" class="btn btn-info">View</a>
-                                    <a th:href="@{'/transactions/add/' + ${transaction.id}}" class="btn btn-primary">Edit</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Detail</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="transaction : ${transactionPage.content}">
+                                    <td th:text="${transaction.createdDateFormatted}"/>
+                                    <td>
+                                        <div>
+                                            <label class="text-info">No Resi: </label>
+                                            <strong><span th:text="${transaction.receiptNumber}"/></strong>
+                                        </div>
+                                        <div>
+                                            <label class="text-info">Keterangan: </label>
+                                            <span class="text-bg-secondary" th:text="${transaction.description}"/>
+                                        </div>
+                                        <div>
+                                            <label class="text-info">Pengirim: </label>
+                                            <span th:text="${transaction.sender}"/>
+                                        </div>
+                                        <div>
+                                            <label class="text-info">Penerima: </label>
+                                            <span th:text="${transaction.receiver}"/>
+                                        </div>
+                                        <div>
+                                            <label class="bgtext-info">Alamat Penerima: </label>
+                                            <span th:text="${transaction.receiverAddress}"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span th:class="${transaction.status.name == 'IN_PROGRESS'} ? 'bg-primary' : 'bg-success' "><span class="badge badge-primary" th:text="${transaction.status.name == 'IN_PROGRESS'} ? 'Sedang Diproses' : 'Terkirim' "/></span>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{'/transactions/view/' + ${transaction.id}}" class="btn btn-info"><i class="fas fa-eye me-1"></i></a>
+                                        <a th:href="@{'/transactions/add/' + ${transaction.id}}"
+                                           class="btn btn-primary"><i class="fas fa-file-edit me-1"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="dataTable-bottom">
                             <div class="dataTable-info">Showing <span
                                     th:text="${transactionPage.getNumberOfElements}"></span> of <span
