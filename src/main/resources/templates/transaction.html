@@ -78,10 +78,7 @@
                             <tr>
                                 <th>No. Resi</th>
                                 <th>Tanggal</th>
-                                <th>Keterangan</th>
-                                <th>Pengirim</th>
-                                <th>Penerima</th>
-                                <th>Alamat Tujuan</th>
+                                <th>Detail</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -92,10 +89,24 @@
                                 th:alt-title="${iStat.even}? 'even' : 'odd'">
                                 <td th:text="${transaction.receiptNumber}"/>
                                 <td th:text="${transaction.createdDateFormatted}"/>
-                                <td th:text="${transaction.description}"/>
-                                <td th:text="${transaction.sender}"/>
-                                <td th:text="${transaction.receiver}"/>
-                                <td th:text="${transaction.receiverAddress}"/>
+                                <td>
+                                    <div>
+                                        <label class="text-info">Keterangan: </label>
+                                        <span th:text="${transaction.description}"/>
+                                    </div>
+                                    <div>
+                                        <label class="text-info">Pengirim: </label>
+                                        <span th:text="${transaction.sender}"/>
+                                    </div>
+                                    <div>
+                                        <label class="text-info">Penerima: </label>
+                                        <span th:text="${transaction.receiver}"/>
+                                    </div>
+                                    <div>
+                                        <label class="text-info">Alamat Penerima: </label>
+                                        <span th:text="${transaction.receiverAddress}"/>
+                                    </div>
+                                </td>
                                 <td th:text="${transaction.status.name == 'IN_PROGRESS'} ? 'Sedang Diproses' : 'Terkirim' "/>
                                 <td>
                                     <a th:href="@{'/transactions/view/' + ${transaction.id}}" class="btn btn-info">View</a>

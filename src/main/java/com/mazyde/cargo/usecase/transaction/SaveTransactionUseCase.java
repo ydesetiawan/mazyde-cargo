@@ -48,9 +48,7 @@ public class SaveTransactionUseCase {
         try {
 
             BufferedImage resizeImage = resizeImage(
-                ImageIO.read(file.getInputStream()),
-                300,
-                400
+                ImageIO.read(file.getInputStream())
             );
 
             transactionPhotoCommandGateway.save(
@@ -63,10 +61,13 @@ public class SaveTransactionUseCase {
         }
     }
 
-    private BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException {
-        BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage resizeImage(BufferedImage originalImage) throws IOException {
+        int w = originalImage.getWidth() / 4;
+        int h = originalImage.getHeight() / 4;
+
+        BufferedImage resizedImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics2D = resizedImage.createGraphics();
-        graphics2D.drawImage(originalImage, 0, 0, targetWidth, targetHeight, null);
+        graphics2D.drawImage(originalImage, 0, 0, w, h, null);
         graphics2D.dispose();
         return resizedImage;
     }
