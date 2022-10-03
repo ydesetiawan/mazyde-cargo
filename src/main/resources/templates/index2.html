@@ -86,20 +86,25 @@
                     <button type="submit" class="btn btn-primary">Tracking</button>
                 </form>
 
-                <div th:if="${dto!=null}" class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+                <div th:if="${isEmpty}" class="table-responsive gy-4" data-aos="fade-up" data-aos-delay="400">
+                    Data tidak di temukan
+                </div>
+                <div th:if="${dto!=null}" class="table-responsive gy-4" data-aos="fade-up" data-aos-delay="400">
 
-                    <table class="text-white table table-responsive mb-3">
+                    <table class="text-white table mb-3">
                         <thead>
                         <tr>
-                            <th>No. Resi</th>
                             <th>Detail</th>
                             <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td th:text="${dto.receiptNumber}"/>
                             <td>
+                                <div>
+                                    <label class="text-info">No Resi: </label>
+                                    <strong><span th:text="${dto.receiptNumber}"/></strong>
+                                </div>
                                 <div>
                                     <label class="text-info">Keterangan: </label>
                                     <span th:text="${dto.description}"/>
@@ -117,7 +122,11 @@
                                     <span th:text="${dto.receiverAddress}"/>
                                 </div>
                             </td>
-                            <td th:text="${dto.status.name == 'IN_PROGRESS'} ? 'Sedang Diproses' : 'Terkirim' "/>
+                            <td>
+                                <span th:class="${dto.status.name == 'IN_PROGRESS'} ? 'bg-primary' : 'bg-success' "><span
+                                        class="badge badge-primary"
+                                        th:text="${dto.status.name == 'IN_PROGRESS'} ? 'Sedang Diproses' : 'Terkirim' "/></span>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

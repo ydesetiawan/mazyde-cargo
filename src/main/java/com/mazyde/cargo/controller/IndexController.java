@@ -22,8 +22,10 @@ public class IndexController {
         if (query.isPresent()) {
             TransactionDto transactionDto = trackReceiptNumberUserCase.trackReceiptNumber(query.get());
             model.addAttribute("dto", transactionDto);
-        }else {
+            model.addAttribute("isEmpty", transactionDto == null);
+        } else {
             model.addAttribute("dto", null);
+            model.addAttribute("isEmpty", true);
         }
 
         return "index2";
