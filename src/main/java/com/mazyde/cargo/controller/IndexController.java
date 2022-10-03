@@ -25,7 +25,6 @@ public class IndexController {
             model.addAttribute("isEmpty", transactionDto == null);
         } else {
             model.addAttribute("dto", null);
-            model.addAttribute("isEmpty", true);
         }
 
         return "index2";

@@ -86,7 +86,7 @@
                     <button type="submit" class="btn btn-primary">Tracking</button>
                 </form>
 
-                <div th:if="${isEmpty}" class="table-responsive gy-4" data-aos="fade-up" data-aos-delay="400">
+                <div th:if="${isEmpty!=null && isEmpty}" class="table-responsive gy-4" data-aos="fade-up" data-aos-delay="400">
                     Data tidak di temukan
                 </div>
                 <div th:if="${dto!=null}" class="table-responsive gy-4" data-aos="fade-up" data-aos-delay="400">
