@@ -48,18 +48,16 @@
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="destination" type="VARCHAR(100)"/>
             <column name="receipt_number" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
+            <column name="courier" type="VARCHAR(100)"/>
+            <column name="via" type="VARCHAR(100)"/>
+            <column name="volume" type="VARCHAR(100)"/>
+            <column name="weight" type="VARCHAR(100)"/>
             <column name="description" type="VARCHAR(255)"/>
-            <column name="sender" type="VARCHAR(100)"/>
-            <column name="sender_phone" type="VARCHAR(20)"/>
-            <column name="receiver" type="VARCHAR(100)"/>
-            <column name="receiver_phone" type="VARCHAR(20)"/>
-            <column name="receiver_address" type="VARCHAR(255)"/>
-            <column name="image_link" type="VARCHAR(255)"/>
-            <column name="shipping_cost" type="decimal(19, 2)"
-                    defaultValueNumeric="0"/>
             <column defaultValueNumeric="0" name="status" type="TINYINT(3)" />
             <column name="created_by" type="VARCHAR(50)">
                 <constraints nullable="false"/>
@@ -78,9 +76,10 @@
 
         <createIndex tableName="transaction"
                      indexName="IDX_Transaction_1">
+            <column name="destination"/>
             <column name="receipt_number"/>
-            <column name="sender"/>
-            <column name="receiver"/>
+            <column name="courier"/>
+            <column name="via"/>
         </createIndex>
     </changeSet>
 

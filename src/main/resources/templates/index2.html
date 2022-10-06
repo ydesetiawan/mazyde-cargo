@@ -86,7 +86,8 @@
                     <button type="submit" class="btn btn-primary">Tracking</button>
                 </form>
 
-                <div th:if="${isEmpty!=null && isEmpty}" class="table-responsive gy-4" data-aos="fade-up" data-aos-delay="400">
+                <div th:if="${isEmpty!=null && isEmpty}" class="table-responsive gy-4" data-aos="fade-up"
+                     data-aos-delay="400">
                     Data tidak di temukan
                 </div>
                 <div th:if="${dto!=null}" class="table-responsive gy-4" data-aos="fade-up" data-aos-delay="400">
@@ -102,24 +103,37 @@
                         <tr>
                             <td>
                                 <div>
+                                    <label class="text-info">Nama: </label>
+                                    <span th:text="${dto.name}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Tujuan: </label>
+                                    <span th:text="${dto.destination}"/>
+                                </div>
+                                <div>
                                     <label class="text-info">No Resi: </label>
                                     <strong><span th:text="${dto.receiptNumber}"/></strong>
                                 </div>
+
                                 <div>
-                                    <label class="text-info">Keterangan: </label>
+                                    <label class="text-info">Kurir: </label>
+                                    <span th:text="${dto.courier}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Via: </label>
+                                    <span th:text="${dto.via}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Volume: </label>
+                                    <span th:text="${dto.volume}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Berat: </label>
+                                    <span th:text="${dto.weight}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Catatan: </label>
                                     <span th:text="${dto.description}"/>
-                                </div>
-                                <div>
-                                    <label class="text-info">Pengirim: </label>
-                                    <span th:text="${dto.sender}"/>
-                                </div>
-                                <div>
-                                    <label class="text-info">Penerima: </label>
-                                    <span th:text="${dto.receiver}"/>
-                                </div>
-                                <div>
-                                    <label class="text-info">Alamat Penerima: </label>
-                                    <span th:text="${dto.receiverAddress}"/>
                                 </div>
                             </td>
                             <td>
@@ -209,15 +223,15 @@
                     </div>
                 </div><!-- End Card Item -->
 
-<!--                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">-->
-<!--                    <div class="card">-->
-<!--                        <div class="card-img">-->
-<!--                            <img th:src="@{'assets/img/kpm_kargo_diskon_udara.jpeg'}" alt="" class="img-fluid">-->
-<!--                        </div>-->
-<!--                        <h3>PROMO</h3>-->
-<!--                        <p>September ceria</p>-->
-<!--                    </div>-->
-<!--                </div>&lt;!&ndash; End Card Item &ndash;&gt;-->
+                <!--                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">-->
+                <!--                    <div class="card">-->
+                <!--                        <div class="card-img">-->
+                <!--                            <img th:src="@{'assets/img/kpm_kargo_diskon_udara.jpeg'}" alt="" class="img-fluid">-->
+                <!--                        </div>-->
+                <!--                        <h3>PROMO</h3>-->
+                <!--                        <p>September ceria</p>-->
+                <!--                    </div>-->
+                <!--                </div>&lt;!&ndash; End Card Item &ndash;&gt;-->
 
             </div>
 

@@ -5,12 +5,9 @@ import com.mazyde.cargo.controller.ActionType;
 import com.mazyde.cargo.model.transaction.Transaction;
 import com.mazyde.cargo.model.transaction.TransactionStatus;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -23,31 +20,29 @@ public class SaveTransactionCmd {
 
     private Long id;
 
+    @NotEmpty(message = "Nama tidak boleh kosong")
+    private String name;
+
+    @NotEmpty(message = "Tujuan tidak boleh kosong")
+    private String destination;
+
     @NotEmpty(message = "No Resi tidak boleh kosong")
     private String receiptNumber;
 
+    @NotEmpty(message = "Kurir tidak boleh kosong")
+    private String courier;
 
+    @NotEmpty(message = "Via tidak boleh kosong")
+    private String via;
+
+    @NotEmpty(message = "Volume tidak boleh kosong")
+    private String volume;
+
+    @NotEmpty(message = "Berat tidak boleh kosong")
+    private String weight;
+
+    @NotEmpty(message = "Catatan tidak boleh kosong")
     private String description;
-
-    @NotEmpty(message = "Pengirim tidak boleh kosong")
-    private String sender;
-
-    @NotEmpty(message = "Telp Pengirim tidak boleh kosong")
-    private String senderPhone;
-
-    @NotEmpty(message = "Penerima tidak boleh kosong")
-    private String receiver;
-
-    @NotEmpty(message = "Telpn Penerima tidak boleh kosong")
-    private String receiverPhone;
-
-    @NotEmpty(message = "Alamat tidak boleh kosong")
-    private String receiverAddress;
-
-    private String imageLink;
-
-    @NotNull(message = "Ongkir tidak boleh kosong")
-    private BigDecimal shippingCost;
 
     private TransactionStatus status;
 
@@ -68,14 +63,14 @@ public class SaveTransactionCmd {
         return SaveTransactionCmd.builder()
             .actionType(ActionType.EDIT)
             .id(transaction.getId())
+            .name(transaction.getName())
+            .destination(transaction.getDestination())
             .receiptNumber(transaction.getReceiptNumber())
+            .courier(transaction.getCourier())
+            .via(transaction.getVia())
+            .volume(transaction.getVolume())
+            .weight(transaction.getWeight())
             .description(transaction.getDescription())
-            .sender(transaction.getSender())
-            .senderPhone(transaction.getSenderPhone())
-            .receiver(transaction.getReceiver())
-            .receiverPhone(transaction.getReceiverPhone())
-            .receiverAddress(transaction.getReceiverAddress())
-            .shippingCost(transaction.getShippingCost())
             .status(transaction.getStatus())
             .build();
     }

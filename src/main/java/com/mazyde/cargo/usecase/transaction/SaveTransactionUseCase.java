@@ -39,12 +39,12 @@ public class SaveTransactionUseCase {
         transactionCommandGateway.save(transaction);
 
         if (null != file && !file.isEmpty()) {
-            savePhoto(cmd, file, transaction);
+            savePhoto(file, transaction);
         }
 
     }
 
-    private void savePhoto(SaveTransactionCmd cmd, MultipartFile file, Transaction transaction) {
+    private void savePhoto(MultipartFile file, Transaction transaction) {
         try {
 
             BufferedImage resizeImage = resizeImage(

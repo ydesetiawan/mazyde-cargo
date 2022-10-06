@@ -4,8 +4,6 @@ import com.mazyde.cargo.model.transaction.Transaction;
 import com.mazyde.cargo.model.transaction.TransactionStatus;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -14,21 +12,21 @@ public class TransactionDto {
 
     private Long id;
 
+    private String name;
+
+    private String destination;
+
     private String receiptNumber;
 
+    private String courier;
+
+    private String via;
+
+    private String volume;
+
+    private String weight;
+
     private String description;
-
-    private String sender;
-
-    private String senderPhone;
-
-    private String receiver;
-
-    private String receiverPhone;
-
-    private String receiverAddress;
-
-    private BigDecimal shippingCost;
 
     private TransactionStatus status;
 
@@ -38,14 +36,14 @@ public class TransactionDto {
     public static TransactionDto valueOf(Transaction transaction) {
         return TransactionDto.builder()
             .id(transaction.getId())
+            .name(transaction.getName())
+            .destination(transaction.getDestination())
             .receiptNumber(transaction.getReceiptNumber())
+            .courier(transaction.getCourier())
+            .via(transaction.getVia())
+            .volume(transaction.getVolume())
+            .weight(transaction.getWeight())
             .description(transaction.getDescription())
-            .sender(transaction.getSender())
-            .senderPhone(transaction.getSenderPhone())
-            .receiver(transaction.getReceiver())
-            .receiverPhone(transaction.getReceiverPhone())
-            .receiverAddress(transaction.getReceiverAddress())
-            .shippingCost(transaction.getShippingCost())
             .status(transaction.getStatus())
             .build();
     }

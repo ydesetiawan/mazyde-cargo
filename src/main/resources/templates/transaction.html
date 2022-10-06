@@ -89,24 +89,37 @@
                                     <td th:text="${transaction.createdDateFormatted}"/>
                                     <td>
                                         <div>
+                                            <label class="text-info">Nama: </label>
+                                            <span th:text="${transaction.name}"/>
+                                        </div>
+                                        <div>
+                                            <label class="text-info">Tujuan: </label>
+                                            <span th:text="${transaction.destination}"/>
+                                        </div>
+                                        <div>
                                             <label class="text-info">No Resi: </label>
                                             <strong><span th:text="${transaction.receiptNumber}"/></strong>
                                         </div>
+
                                         <div>
-                                            <label class="text-info">Keterangan: </label>
-                                            <span class="text-bg-secondary" th:text="${transaction.description}"/>
+                                            <label class="text-info">Kurir: </label>
+                                            <span th:text="${transaction.courier}"/>
                                         </div>
                                         <div>
-                                            <label class="text-info">Pengirim: </label>
-                                            <span th:text="${transaction.sender}"/>
+                                            <label class="text-info">Via: </label>
+                                            <span th:text="${transaction.via}"/>
                                         </div>
                                         <div>
-                                            <label class="text-info">Penerima: </label>
-                                            <span th:text="${transaction.receiver}"/>
+                                            <label class="text-info">Volume: </label>
+                                            <span th:text="${transaction.volume}"/>
                                         </div>
                                         <div>
-                                            <label class="bgtext-info">Alamat Penerima: </label>
-                                            <span th:text="${transaction.receiverAddress}"/>
+                                            <label class="text-info">Berat: </label>
+                                            <span th:text="${transaction.weight}"/>
+                                        </div>
+                                        <div>
+                                            <label class="text-info">Catatan: </label>
+                                            <span th:text="${transaction.description}"/>
                                         </div>
                                     </td>
                                     <td>

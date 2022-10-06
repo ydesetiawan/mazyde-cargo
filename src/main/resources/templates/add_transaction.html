@@ -70,6 +70,23 @@
                         <input type="hidden" th:name="id" th:field="*{id}"/>
                         <input type="hidden" th:name="actionType" th:field="*{actionType}"/>
                         <div class="mb-3">
+                            <label for="nameId" class="form-label">Nama</label>
+                            <input th:name="name" th:field="*{name}" class="form-control" id="nameId">
+                            <ul th:if="${result!=null AND result.hasErrors()}">
+                                <li th:each="err : ${result.getFieldErrors('name')}" th:text="${err.defaultMessage}"
+                                    class="error text-danger"/>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
+                            <label for="destinationId" class="form-label">Tujuan</label>
+                            <input th:name="destination" th:field="*{destination}" class="form-control"
+                                   id="destinationId">
+                            <ul th:if="${result!=null AND result.hasErrors()}">
+                                <li th:each="err : ${result.getFieldErrors('destination')}"
+                                    th:text="${err.defaultMessage}" class="error text-danger"/>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
                             <label for="receiptNumberId" class="form-label">No Resi</label>
                             <input th:name="receiptNumber" th:field="*{receiptNumber}" class="form-control"
                                    id="receiptNumberId"/>
@@ -79,65 +96,47 @@
                             </ul>
                         </div>
                         <div class="mb-3">
-                            <label for="descriptionId" class="form-label">Deskripsi</label>
+                            <label for="courierId" class="form-label">Kurir</label>
+                            <input th:name="courier" th:field="*{courier}" class="form-control" id="courierId">
+                            <ul th:if="${result!=null AND result.hasErrors()}">
+                                <li th:each="err : ${result.getFieldErrors('courier')}" th:text="${err.defaultMessage}"
+                                    class="error text-danger"/>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
+                            <label for="viaId" class="form-label">Via</label>
+                            <input th:name="via" th:field="*{via}" class="form-control"
+                                   id="viaId">
+                            <ul th:if="${result!=null AND result.hasErrors()}">
+                                <li th:each="err : ${result.getFieldErrors('via')}"
+                                    th:text="${err.defaultMessage}" class="error text-danger"/>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
+                            <label for="volumeId" class="form-label">Volume</label>
+                            <input th:name="volume" th:field="*{volume}" class="form-control"
+                                   id="volumeId">
+                            <ul th:if="${result!=null AND result.hasErrors()}">
+                                <li th:each="err : ${result.getFieldErrors('volume')}"
+                                    th:text="${err.defaultMessage}" class="error text-danger"/>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
+                            <label for="weightId" class="form-label">Berat</label>
+                            <input th:name="weight" th:field="*{weight}" class="form-control"
+                                   id="weightId">
+                            <ul th:if="${result!=null AND result.hasErrors()}">
+                                <li th:each="err : ${result.getFieldErrors('weight')}"
+                                    th:text="${err.defaultMessage}" class="error text-danger"/>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descriptionId" class="form-label">Catatan</label>
                             <textarea th:name="description" th:field="*{description}" class="form-control"
                                       id="descriptionId"
                                       rows="3"></textarea>
                             <ul th:if="${result!=null AND result.hasErrors()}">
                                 <li th:each="err : ${result.getFieldErrors('description')}"
-                                    th:text="${err.defaultMessage}" class="error text-danger"/>
-                            </ul>
-                        </div>
-                        <div class="mb-3">
-                            <label for="senderId" class="form-label">Nama Pengirim</label>
-                            <input th:name="sender" th:field="*{sender}" class="form-control" id="senderId">
-                            <ul th:if="${result!=null AND result.hasErrors()}">
-                                <li th:each="err : ${result.getFieldErrors('sender')}" th:text="${err.defaultMessage}"
-                                    class="error text-danger"/>
-                            </ul>
-                        </div>
-                        <div class="mb-3">
-                            <label for="senderPhoneId" class="form-label">Telp Pengirim</label>
-                            <input th:name="senderPhone" th:field="*{senderPhone}" class="form-control"
-                                   id="senderPhoneId">
-                            <ul th:if="${result!=null AND result.hasErrors()}">
-                                <li th:each="err : ${result.getFieldErrors('senderPhone')}"
-                                    th:text="${err.defaultMessage}" class="error text-danger"/>
-                            </ul>
-                        </div>
-                        <div class="mb-3">
-                            <label for="receiverId" class="form-label">Nama Penerima</label>
-                            <input th:name="receiver" th:field="*{receiver}" class="form-control" id="receiverId">
-                            <ul th:if="${result!=null AND result.hasErrors()}">
-                                <li th:each="err : ${result.getFieldErrors('receiver')}" th:text="${err.defaultMessage}"
-                                    class="error text-danger"/>
-                            </ul>
-                        </div>
-                        <div class="mb-3">
-                            <label for="receiverPhoneId" class="form-label">Telp Penerima</label>
-                            <input th:name="receiverPhone" th:field="*{receiverPhone}" class="form-control"
-                                   id="receiverPhoneId">
-                            <ul th:if="${result!=null AND result.hasErrors()}">
-                                <li th:each="err : ${result.getFieldErrors('receiverPhone')}"
-                                    th:text="${err.defaultMessage}" class="error text-danger"/>
-                            </ul>
-                        </div>
-                        <div class="mb-3">
-                            <label for="receiverAddressId" class="form-label">Alamat Penerima</label>
-                            <textarea th:name="receiverAddress" th:field="*{receiverAddress}" class="form-control"
-                                      id="receiverAddressId" rows="3">
-                                </textarea>
-                            <ul th:if="${result!=null AND result.hasErrors()}">
-                                <li th:each="err : ${result.getFieldErrors('receiverAddress')}"
-                                    th:text="${err.defaultMessage}" class="error text-danger"/>
-                            </ul>
-                        </div>
-                        <div class="mb-3">
-                            <label for="shippingCostId" class="form-label">Ongkir</label>
-                            <input th:name="shippingCost" th:field="*{shippingCost}" class="form-control"
-                                   id="shippingCostId">
-                            <ul th:if="${result!=null AND result.hasErrors()}">
-                                <li th:each="err : ${result.getFieldErrors('shippingCost')}"
                                     th:text="${err.defaultMessage}" class="error text-danger"/>
                             </ul>
                         </div>
@@ -162,11 +161,12 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Maksimal file 10MB</label>
-                            <input class="form-control" type="file" th:name="photo" accept="image/png, image/jpeg" />
+                            <input class="form-control" type="file" th:name="photo" accept="image/png, image/jpeg"/>
                         </div>
                         <br/>
                         <div class="mb-3">
-                            <button class="btn btn-primary" type="submit"><i class="fas fa-save me-1"></i> Submit form</button>
+                            <button class="btn btn-primary" type="submit"><i class="fas fa-save me-1"></i> Submit form
+                            </button>
                         </div>
 
                         </section>

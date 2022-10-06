@@ -63,36 +63,37 @@
                             </div>
                             <div class="card-body">
                                 <div>
-                                    <label class="text-black fw-bold">No Resi : </label>
-                                    <span th:text="${dto.receiptNumber}"/>
+                                    <label class="text-info">Nama: </label>
+                                    <span th:text="${dto.name}"/>
                                 </div>
                                 <div>
-                                    <label class="text-black fw-bold">Description : </label>
+                                    <label class="text-info">Tujuan: </label>
+                                    <span th:text="${dto.destination}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">No Resi: </label>
+                                    <strong><span th:text="${dto.receiptNumber}"/></strong>
+                                </div>
+
+                                <div>
+                                    <label class="text-info">Kurir: </label>
+                                    <span th:text="${dto.courier}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Via: </label>
+                                    <span th:text="${dto.via}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Volume: </label>
+                                    <span th:text="${dto.volume}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Berat: </label>
+                                    <span th:text="${dto.weight}"/>
+                                </div>
+                                <div>
+                                    <label class="text-info">Catatan: </label>
                                     <span th:text="${dto.description}"/>
-                                </div>
-                                <div>
-                                    <label class="text-black fw-bold">Pengirim : </label>
-                                    <span th:text="${dto.sender}"/>
-                                </div>
-                                <div>
-                                    <label class="text-black fw-bold">Telp Pengirim : </label>
-                                    <span th:text="${dto.senderPhone}"/>
-                                </div>
-                                <div>
-                                    <label class="text-black fw-bold">Penerima : </label>
-                                    <span th:text="${dto.receiver}"/>
-                                </div>
-                                <div>
-                                    <label class="text-black fw-bold">Telp Penerima : </label>
-                                    <span th:text="${dto.receiverPhone}"/>
-                                </div>
-                                <div>
-                                    <label class="text-black fw-bold">Alamat Penerima : </label>
-                                    <span th:text="${dto.receiverAddress}"/>
-                                </div>
-                                <div>
-                                    <label class="text-black fw-bold">Ongkir : </label>
-                                    <span th:text="${dto.shippingCost}"/>
                                 </div>
                                 <div>
                                     <label class="text-black fw-bold">Status : </label>
