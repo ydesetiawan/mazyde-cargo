@@ -71,6 +71,5 @@ public class Transaction extends AuditingEntity {
         this.status = cmd.getStatus();
         return this;
     }
-
-
+    
 }
